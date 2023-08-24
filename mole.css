@@ -22,16 +22,17 @@ body {
 
 #board div {
   /* board = 540 x 540, divide into 3x3 tiles --> 180 x 180 per div */
-  width: 120px; 
-  height: 120px;
+  width: 15%; 
+  height: 15%;
   background-image: url("./pipe.png");
-  background-size: cover;
+  background-size:contain;
 }
 
 #board div img {
   /* all img tags inside tiles */
-  width: 100px;
-  height: 100px;
+  width: 70%;
+  height: 70%;
+  
 
   user-select: none;
   -moz-user-select: none;

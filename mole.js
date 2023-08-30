@@ -2,25 +2,32 @@ let currMoleTile;
 let currPlantTile;
 let score = 0;
 let gameOver = false;
+let playerName = "";
 let playerRanking = [];
-window.onload = function () {
-  setGame();
+
+function startGame() {
+  playerName = prompt("Enter your name:");
+  if (playerName) {
+    setGame();
+  }
 }
 
+window.onload = function () {
+  startGame();
+};
+
 function setGame() {
-  //set up the grid in html
-  for (let i = 0; i < 36; i++) { // 6x6 grid, total 36 tiles
+  for (let i = 0; i < 36; i++) {
     let tile = document.createElement("div");
     tile.id = i.toString();
     tile.addEventListener("click", selectTile);
     document.getElementById("board").appendChild(tile);
   }
-  setInterval(setMole, 1000); // Increase frequency to every 0.5 seconds
+  setInterval(setMole, 1000);
   setInterval(setPlant, 1000);
 }
 
 function getRandomTile() {
-  //math.random --> 0-1 --> (0-1) * 9 = (0-9) --> round down to (0-8) integers
   let num = Math.floor(Math.random() * 36);
   return num.toString();
 }
@@ -33,7 +40,7 @@ function setMole() {
     currMoleTile.innerHTML = "";
   }
   let mole = document.createElement("img");
-  mole.src = "./death.png";
+  mole.src = "./images/death.png";
 
   let num = getRandomTile();
   if (currPlantTile && currPlantTile.id == num) {
@@ -51,7 +58,7 @@ function setPlant() {
     currPlantTile.innerHTML = "";
   }
   let plant = document.createElement("img");
-  plant.src = "./life.png";
+  plant.src = "./images/life.png";
 
   let num = getRandomTile();
   if (currMoleTile && currMoleTile.id == num) {
@@ -61,39 +68,20 @@ function setPlant() {
   currPlantTile.appendChild(plant);
 }
 
-
 function selectTile() {
-  
-  // while (score==100){
-
-
   if (gameOver) {
     return;
   }
-  // if (playerName) {
-  //   playerRanking.push({ name: playerName, score: score });
-  //   playerRanking.sort((a, b) => b.score - a.score); // Sort in descending order
-  //   updateRanking();
-  // }
   if (this == currMoleTile) {
     score += 10;
     document.getElementById("score").innerText = score.toString();
-
-    // Update player ranking
-     let playerName = prompt("Enter your name:");
-    if (playerName) {
-      playerRanking.push({ name: playerName, score: score });
-      playerRanking.sort((a, b) => b.score - a.score); // Sort in descending order
-      updateRanking();
-    }
   }
-  // if (this == currMoleTile) {
-  //     score += 10;
-  //     document.getElementById("score").innerText = score.toString(); //update score html
-  // }
   else if (this == currPlantTile) {
-      document.getElementById("score").innerText = "GAME OVER: " + score.toString(); //update score html
-      gameOver = true;
+    gameOver = true;
+    playerRanking.push({ name: playerName, score: score });
+    playerRanking.sort((a, b) => b.score - a.score);
+    updateRanking();
+    document.getElementById("score").innerText = "GAME OVER: " + score.toString();
   }
 }
 
@@ -102,8 +90,8 @@ function updateRanking() {
   playerList.innerHTML = ""; // Clear previous ranking
 
   playerRanking.forEach((player, index) => {
-      let listItem = document.createElement("li");
-      listItem.innerText = `${index + 1}. ${player.name}: ${player.score}`;
-      playerList.appendChild(listItem);
+    let listItem = document.createElement("li");
+    listItem.innerText = `${index + 1}. ${player.name}: ${player.score}`;
+    playerList.appendChild(listItem);
   });
 }

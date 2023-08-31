@@ -1,7 +1,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
-  background: url("https://ik.imagekit.io/tpcpcek/graveyard-bg.png?updatedAt=1693411478128");
+  background: url("./images/background.png");
   background-size: cover;
 }
 
@@ -13,31 +13,33 @@ body {
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-
-  background: url("./soil.png");
+  background-color:  rgba(0, 0, 0, 0.7);
   background-size: cover;
   border-radius: 25px;
 }
 
 #board div {
   /* board = 540 x 540, divide into 3x3 tiles --> 180 x 180 per div */
-  width: 15%; 
-  height: 15%;
-  background-image: url("./images/pipe.png");
+  width: 25%; 
+  height: 25%;
+  background-image: url("./images/gate.png");
   background-size:contain;
+  background-repeat: no-repeat;
 }
 
 #board div img {
   /* all img tags inside tiles */
   width: 70%;
   height: 70%;
-  
-
   user-select: none;
   -moz-user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+
+}
+.img{
+  margin-bottom: 20px;
 }
 
 #ranking {

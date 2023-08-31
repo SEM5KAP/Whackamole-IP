@@ -17,18 +17,18 @@ window.onload = function () {
 };
 
 function setGame() {
-  for (let i = 0; i < 36; i++) {
+  for (let i = 0; i < 16; i++) {
     let tile = document.createElement("div");
     tile.id = i.toString();
     tile.addEventListener("click", selectTile);
     document.getElementById("board").appendChild(tile);
   }
-  setInterval(setMole, 1000);
-  setInterval(setPlant, 1000);
+  setInterval(setMole, 800);
+  setInterval(setPlant, 800);
 }
 
 function getRandomTile() {
-  let num = Math.floor(Math.random() * 36);
+  let num = Math.floor(Math.random() * 16);
   return num.toString();
 }
 
@@ -40,7 +40,7 @@ function setMole() {
     currMoleTile.innerHTML = "";
   }
   let mole = document.createElement("img");
-  mole.src = "./images/death.png";
+  mole.src = "./images/points.png"; //Zombie
 
   let num = getRandomTile();
   if (currPlantTile && currPlantTile.id == num) {
@@ -58,7 +58,7 @@ function setPlant() {
     currPlantTile.innerHTML = "";
   }
   let plant = document.createElement("img");
-  plant.src = "./images/life.png";
+  plant.src = "./images/gameover.png";//Girl
 
   let num = getRandomTile();
   if (currMoleTile && currMoleTile.id == num) {

@@ -6,7 +6,7 @@
 
     $conn =new mysqli('localhost','root','','whack_a_mole');
     if($conn->connect_error){
-        die('Connection failed :'$conn->connect_error);
+        die('Connection failed :'.$conn->connect_error);
     }
     else{
         $stmt = $conn->prepare("insert into signup(firstName,lastName,username,password)values(?,?,?,?)");

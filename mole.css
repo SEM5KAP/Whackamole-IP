@@ -3,32 +3,40 @@ body {
   text-align: center;
   background: url("./images/background.png");
   background-size: cover;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1, h2 {
+  color: white;
 }
 
 #board {
   width: 720px;
   height: 720px;
-  /* background-color: green; */
-
-  margin: 0 auto;
+  margin: 20px auto;
   display: flex;
   flex-wrap: wrap;
-  background-color:  rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.7);
   background-size: cover;
   border-radius: 25px;
+  position: relative;
 }
 
 #board div {
-  /* board = 540 x 540, divide into 3x3 tiles --> 180 x 180 per div */
-  width: 25%; 
+  width: 25%;
   height: 25%;
   background-image: url("./images/gate.png");
-  background-size:contain;
+  background-size: contain;
   background-repeat: no-repeat;
 }
 
 #board div img {
-  /* all img tags inside tiles */
   width: 70%;
   height: 70%;
   user-select: none;
@@ -36,10 +44,6 @@ body {
   -webkit-user-drag: none;
   -webkit-user-select: none;
   -ms-user-select: none;
-
-}
-.img{
-  margin-bottom: 20px;
 }
 
 #ranking {
@@ -61,4 +65,47 @@ body {
 
 #playerList li {
   margin-bottom: 5px;
+}
+
+label {
+  color: white;
+  margin-right: 10px;
+}
+
+#speedLevel {
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+#speedLevel:hover {
+  background-color: #45a049;
+}
+
+#speedLevel:focus {
+  outline: none;
+}
+
+@media only screen and (max-width: 600px) {
+  #board {
+    width: 100%; /* Full width for smaller screens */
+    max-width: none; /* No maximum width for smaller screens */
+  }
+  #board-container {
+    flex-direction: column;
+  }
+
+  #board div img{
+    margin-top: -1rem;
+  }
+
+  #ranking {
+    width: 100%; /* Full width for smaller screens */
+    max-width: none; /* No maximum width for smaller screens */
+    left: auto; /* Resetting left property */
+    margin-top: 0; /* Remove margin-top */
+  }
 }

@@ -1,14 +1,15 @@
-let currMoleTile;
-let currPlantTile;
+let currZombieTile;
+let currPlayerTile;
 let score = 0;
 let gameOver = false;
 let playerName = "";
 let playerRanking = [];
+let speedLevel = 1; // Default speed level
 
 function startGame() {
   playerName = prompt("Enter your name:");
   if (playerName) {
-    setGame();
+    resetGame();
   }
 }
 
@@ -16,82 +17,112 @@ window.onload = function () {
   startGame();
 };
 
-function setGame() {
+function resetGame() {
+  score = 0;
+  gameOver = false;
+  document.getElementById("score").innerText = "Score: 0";
+
+  // Clear the game board
+  let board = document.getElementById("board");
+  board.innerHTML = "";
+
+  // Create new tiles
   for (let i = 0; i < 16; i++) {
     let tile = document.createElement("div");
     tile.id = i.toString();
     tile.addEventListener("click", selectTile);
-    document.getElementById("board").appendChild(tile);
+    board.appendChild(tile);
   }
-  setInterval(setMole, 800);
-  setInterval(setPlant, 800);
+
+  // Start the intervals with the selected speed level
+  setInterval(setZombie, getSpeedInterval());
+  setInterval(setPlayer, getSpeedInterval());
 }
 
 function getRandomTile() {
-  let num = Math.floor(Math.random() * 16);
-  return num.toString();
+  return Math.floor(Math.random() * 16).toString();
 }
 
-function setMole() {
+function setZombie() {
   if (gameOver) {
     return;
   }
-  if (currMoleTile) {
-    currMoleTile.innerHTML = "";
+  if (currZombieTile) {
+    currZombieTile.innerHTML = "";
   }
-  let mole = document.createElement("img");
-  mole.src = "./images/points.png"; //Zombie
+  let zombie = document.createElement("img");
+  zombie.src = "./images/points.png";
 
   let num = getRandomTile();
-  if (currPlantTile && currPlantTile.id == num) {
+  if (currPlayerTile && currPlayerTile.id == num) {
     return;
   }
-  currMoleTile = document.getElementById(num);
-  currMoleTile.appendChild(mole);
+  currZombieTile = document.getElementById(num);
+  currZombieTile.appendChild(zombie);
 }
 
-function setPlant() {
+function setPlayer() {
   if (gameOver) {
     return;
   }
-  if (currPlantTile) {
-    currPlantTile.innerHTML = "";
+  if (currPlayerTile) {
+    currPlayerTile.innerHTML = "";
   }
-  let plant = document.createElement("img");
-  plant.src = "./images/gameover.png";//Girl
+  let player = document.createElement("img");
+  player.src = "./images/gameover.png";
 
   let num = getRandomTile();
-  if (currMoleTile && currMoleTile.id == num) {
+  if (currZombieTile && currZombieTile.id == num) {
     return;
   }
-  currPlantTile = document.getElementById(num);
-  currPlantTile.appendChild(plant);
+  currPlayerTile = document.getElementById(num);
+  currPlayerTile.appendChild(player);
 }
 
 function selectTile() {
   if (gameOver) {
     return;
   }
-  if (this == currMoleTile) {
+  if (this == currZombieTile) {
     score += 10;
-    document.getElementById("score").innerText = score.toString();
-  }
-  else if (this == currPlantTile) {
+    document.getElementById("score").innerText = "Score: " + score.toString();
+  } else if (this == currPlayerTile) {
     gameOver = true;
     playerRanking.push({ name: playerName, score: score });
     playerRanking.sort((a, b) => b.score - a.score);
     updateRanking();
     document.getElementById("score").innerText = "GAME OVER: " + score.toString();
+    setTimeout(startGame, 2000); // Restart the game after 2 seconds
   }
 }
 
 function updateRanking() {
   let playerList = document.getElementById("playerList");
-  playerList.innerHTML = ""; // Clear previous ranking
+  playerList.innerHTML = "";
 
   playerRanking.forEach((player, index) => {
     let listItem = document.createElement("li");
     listItem.innerText = `${index + 1}. ${player.name}: ${player.score}`;
     playerList.appendChild(listItem);
   });
+}
+
+function getSpeedInterval() {
+  // Adjust the speed intervals based on the selected speed level
+  switch (speedLevel) {
+    case 1:
+      return 800;
+    case 2:
+      return 600;
+    case 3:
+      return 400;
+    default:
+      return 800; // Default to level 1 if an invalid level is selected
+  }
+}
+
+function changeSpeed() {
+  // Change the speed level when the user selects a different option
+  speedLevel = parseInt(document.getElementById("speedLevel").value);
+  resetGame(); // Restart the game with the new speed level
 }

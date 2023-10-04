@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Whac a Mole</title>
+    <title>Zombie Smash</title>
     <link rel="stylesheet" href="mole.css">
     <script src="mole.js"></script>
 </head>
 <body>
-    <a href="signup.html">Sinup here</a>
+    <a href="signup.html">Sign up here</a>
     <div id="ranking">
         <h3>Player Ranking</h3>
         <ul id="playerList"></ul>
     </div>
-    <h1>Whac a Mole</h1>
+    <h1>Zombie Smash</h1>
     <h2 id="score">0</h2>
+    <div>
+        <label for="speedLevel">Speed Level:</label>
+        <select id="speedLevel" onchange="changeSpeed()">
+            <option value="1">Level 1</option>
+            <option value="2">Level 2</option>
+            <option value="3">Level 3</option>
+        </select>
+    </div>
     <div id="board"></div>
 </body>
 </html>

@@ -1,0 +1,64 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  background: url("./../images/background.jpg");
+  background-size: cover;
+}
+
+#board {
+  width: 720px;
+  height: 720px;
+  /* background-color: green; */
+
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  background-color:  rgba(0, 0, 0, 0.7);
+  background-size: cover;
+  border-radius: 25px;
+}
+
+#board div {
+  /* board = 540 x 540, divide into 3x3 tiles --> 180 x 180 per div */
+  width: 25%; 
+  height: 25%;
+  background-image: url("./../images/gate.png");
+  background-size:contain;
+  background-repeat: no-repeat;
+}
+
+#board div img {
+  /* all img tags inside tiles */
+  width: 70%;
+  height: 70%;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+
+}
+.img{
+  margin-bottom: 20px;
+}
+
+#ranking {
+  width: 200px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  border-radius: 5px;
+}
+
+#playerList {
+  list-style: none;
+  padding: 0;
+}
+
+#playerList li {
+  margin-bottom: 5px;
+}

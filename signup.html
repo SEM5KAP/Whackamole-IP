@@ -1,19 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
     <title>Document</title>
 </head>
+
 <body>
-    <form action="signup.php" method="post">
-      
-        <input type="text" name="firstName">
-        <input type="text" name="lastName">
-        <input type="text" name="username">
-        <input type="text" name="password">
-        <input type="submit" value="submit">
-    </form>
+
+
+    <div id="box">
+        <div id="box1">
+            <h1 style="margin-top: 50px; margin-left: 80px;">Sign Up</h1>
+            <form action="signup.php" method="post">
+                <div id="box11">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <input class="field" type="text" name="firstName" placeholder="Enter First Name" required>
+                    <input class="field" type="text" name="lastName" placeholder="Enter Last Name" required>
+                    <input class="field" type="text" name="username" placeholder="Enter Username " required>
+                    <input class="field" type="text" name="password" placeholder="Enter Password " required>
+                    <div style="display: flex; flex-direction: row; margin-top: 10px;">
+                        <p>Already have an account? </p><a style="margin-top: 16px; margin-left: 5px;"
+                            href="login.html">Login here</a>
+                    </div>
+
+                    <input id="btn" type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+        <div id="box2">
+            <img id="img" src="images/Sign up (4).gif">
+        </div>
+    </div>
+
+
+
+
+
 </body>
+
 </html>

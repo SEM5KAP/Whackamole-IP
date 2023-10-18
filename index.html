@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zombie Smash</title>
-    <link rel="stylesheet" href="mole.css">
-    <script src="mole.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <title>Whack a Mole</title>
+
 </head>
+
 <body>
-    <a href="signup.html">Sign up here</a>
-    <div id="ranking">
-        <h3>Player Ranking</h3>
-        <ul id="playerList"></ul>
-    </div>
-    <h1>Zombie Smash</h1>
-    <h2 id="score">0</h2>
-    <div>
-        <label for="speedLevel">Speed Level:</label>
-        <select id="speedLevel" onchange="changeSpeed()">
-            <option value="1">Level 1</option>
-            <option value="2">Level 2</option>
-            <option value="3">Level 3</option>
-        </select>
-    </div>
-    <div id="board"></div>
+    
+        <div id="navbar">
+            <span >
+               <a href="index.html"> <h2 style="font-size: 25px; color: orangered; margin-left: 30px; margin-top: 17px;">Whack A Mole</h2></a>
+            </span>
+            <div class="links">
+                <a href="index.html">Home</a>
+                <a href="login.html">Login</a><br>
+                <a href="signup.html">Signup</a>
+            </div>
+
+
+        </div>
+   <div id="welcome-box">
+    <h1 style="font-size: 45px;">Welcome to Whack A Mole</h1>
+    <p style="font-size: 20px; position: relative; bottom: 30px;">In the game moles pop up and disappear at varying speeds and patterns, challenging players to improve their reflexes and hand-eye coordination. Players earn points for each successful whack, and their score is tracked and displayed. </p>
+    <a href="game.html"><button id="btn">Start Game</button></a><br>
+   </div>
+    
+
+
 </body>
+
 </html>
